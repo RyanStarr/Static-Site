@@ -32,4 +32,4 @@ My name is Ryan Starr. I have an AZ-900 certification, experience in an IT Servi
 
 I have configured a reverse proxy and VPN to access all of my services remotely from any location. These services include [Nextcloud](https://files.ryanstarr.co.uk) for photo management, [Uptime-Kuma](https://status.theadventuringdev.om) for monitoring service uptime, [Wordpress](https://theadventuringdev.com) for hosting my website (this static page is hosted through Netlify), [Wiki.js](https://wiki.theadventuringdev.com) for documenting my experience (still in development), plus many more. These are all run using docker containers and I am in the process of moving them all over to a Kubernetes cluster hosted on Oracle Cloud.
 
-{{< icon name="download" pack="fas" >}} {{< staticref "uploads/resume.pdf" "newtab" >}}Download{{< /staticref >}} my CV as a PDF.
+{{< icon name="download" pack="fas" >}} {{< staticref "uploads/CV.pdf" "newtab" >}}Download{{< /staticref >}} my CV as a PDF.
