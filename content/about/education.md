@@ -43,7 +43,7 @@ experience:
     date_start: '2015-09-14'
     date_end: '2017-06-24'
     description: |2-
-        * built and ran the Computing Club active directory server and NAS
+        * Built and ran the Computing Club Active Directory server and NAS
         * Programming fundamentals
         * Networking fundamentals
         * Game design fundamentals
