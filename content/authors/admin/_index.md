@@ -17,7 +17,10 @@ social:
       header: false
     link: https://www.linkedin.com/in/ryan-starr-1028/
     icon_pack: fas
+<<<<<<< HEAD
     icon: "linkedin"
+=======
+>>>>>>> 9c2bd4cb628bfeba89d582fa3691f2ad9f8abc76
     label: linkedin
 organizations: []
 education:
