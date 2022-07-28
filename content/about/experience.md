@@ -42,7 +42,7 @@ experience:
     location: California
     date_start: '2015-04-01'
     date_end: '2019-09-31'
-    description: Front of house staff for Hotel (summer job) and Garden Centre Assistant (first job 2 years)
+    description: Taught electronic engineering and researched semiconductor physics.
 
 design:
   columns: '1'
