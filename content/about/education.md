@@ -30,8 +30,8 @@ experience:
     date_start: '2020-09-26'
     date_end: '2022-05-14'
     grade: 2:1
-    description:|2-
-         Grade- 2:1
+    description: |2-
+#         Grade- 2:1
         * Cisco Networking (CCNA not officially qualified)
         * Security fundamentals (How encryption works and how to use tools in Kali Linux)
         * Programming in Python and C#
@@ -45,7 +45,7 @@ experience:
     date_start: '2015-09-14'
     date_end: '2027-06-24'
     description: |2-
-        Grade- Distinction* Distinction* Distinction*
+#        Grade- Distinction* Distinction* Distinction*
         * built and ran the Computing Club active directory server and NAS
         * Programming fundamentals
         * Networking fundamentals
