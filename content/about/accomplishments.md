@@ -23,30 +23,35 @@ date_format: Jan 2006
 #   Leave other parameters empty if not required.
 #   Begin multi-line descriptions with YAML's `|2-` multi-line prefix.
 item:
-  - certificate_url: https://www.coursera.org
+  - certificate_url: https://docs.microsoft.com/en-us/certifications/exams/az-900
     date_end: ''
-    date_start: '2021-01-25'
-    description: ''
-    organization: Coursera
-    organization_url: https://www.coursera.org
-    title: Neural Networks and Deep Learning
+    date_start: '2020-10-14'
+    description: 'AZ-900'
+    organization: Microsoft
+    organization_url: https://docs.microsoft.com/en-us/certifications/exams/az-900
+    title: Microsoft Azure Fundamentals
     url: ''
-  - certificate_url: https://www.edx.org
+  - certificate_url: https://www.linkedin.com/in/ryan-starr-1028
     date_end: ''
-    date_start: '2021-01-01'
-    description: Formulated informed blockchain models, hypotheses, and use cases.
-    organization: edX
-    organization_url: https://www.edx.org
-    title: Blockchain Fundamentals
-    url: https://www.edx.org/professional-certificate/uc-berkeleyx-blockchain-fundamentals
-  - certificate_url: https://www.datacamp.com
-    date_end: '2020-12-21'
+    date_start: '2020-08-01'
+    organization: LinkedIn Learning
+    organization_url: https://www.linkedin.com/learning/linux-bash-shell-and-scripts
+    title: Linux Bash Shell and Scripts
+  - certificate_url: https://www.linkedin.com/in/ryan-starr-1028
+    date_end: ''
     date_start: '2020-07-01'
-    description: ''
-    organization: DataCamp
-    organization_url: https://www.datacamp.com
-    title: 'Object-Oriented Programming in R'
-    url: ''
+    organization: LinkedIn Learning
+    organization_url: https://www.linkedin.com/learning/azure-active-directory-basics
+    title: Azure Active Directory Basics
+  - certificate_url: https://www.linkedin.com/in/ryan-starr-1028
+    date_end: ''
+    date_start: '2020-07-01'
+    organization: LinkedIn Learning
+    organization_url: https://www.linkedin.com/learning/windows-server-2019-essential-training
+    title: Windows Server 2019 Essential Training
+
+
+
 
 design:
   columns: '1'
