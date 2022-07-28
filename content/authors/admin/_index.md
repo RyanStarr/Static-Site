@@ -15,10 +15,6 @@ social:
     link: about/#contact
   - display:
       header: false
-    link: https://www.linkedin.com/in/ryan-starr-1028/
-    icon_pack: fas
-    icon: "linkedin"
-    label: linkedin
 organizations: []
 education:
   courses:
