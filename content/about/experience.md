@@ -25,7 +25,7 @@ experience:
   - title: IT Service Desk Analyst
     company: Royal United Hospitals
     company_url: 'https://www.ruh.nhs.uk/'
-#    company_logo: org-gc
+    company_logo: org-gc
     location: Bath
     date_start: '2021-02-14'
     date_end: '2022-03-18'
@@ -38,10 +38,10 @@ experience:
         * Organising the leavers and joiners lists
 
   - title: Other non tech related jobs
-#    company: University X
-#    company_url: ''
-#    company_logo: org-x
-#    location: California
+    company: University X
+    company_url: ''
+    company_logo: org-x
+    location: California
     date_start: '2015-04-01'
     date_end: '2019-09-31'
     description: Front of house staff for Hotel (summer job) and Garden Centre Assistant (first job 2 years)
