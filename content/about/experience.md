@@ -22,19 +22,19 @@ date_format: Jan 2006
 #   Leave `date_end` empty if it's your current employer.
 #   Begin multi-line descriptions with YAML's `|2-` multi-line prefix.
 experience:
-  - title: CEO
-    company: GenCoin
-    company_url: ''
+  - title: IT Service Desk Analyst
+    company: Royal United Hospitals
+    company_url: 'https://www.ruh.nhs.uk/'
     company_logo: org-gc
-    location: California
-    date_start: '2021-01-01'
-    date_end: ''
+    location: Bath
+    date_start: '2021-02-14'
+    date_end: '2022-03-18'
     description: |2-
-        Responsibilities include:
+        Responsibilities included:
         
-        * Analysing
-        * Modelling
-        * Deploying
+        * IT support (over phone, email and in person)
+        * Creating Documentation for Staff and Users
+        * Creating and editing accounts (Active Directory and other services)
   - title: Professor of Semiconductor Physics
     company: University X
     company_url: ''
