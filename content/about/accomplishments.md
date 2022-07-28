@@ -31,19 +31,19 @@ item:
     organization_url: https://docs.microsoft.com/en-us/certifications/exams/az-900
     title: Microsoft Azure Fundamentals
     url: ''
-  - certificate_url: https://www.linkedin.com/in/ryan-starr-1028
+  - certificate_url: https://www.linkedin.com/in/ryan-starr-1028/details/certifications/
     date_end: ''
     date_start: '2020-08-01'
     organization: LinkedIn Learning
     organization_url: https://www.linkedin.com/learning/linux-bash-shell-and-scripts
     title: Linux Bash Shell and Scripts
-  - certificate_url: https://www.linkedin.com/in/ryan-starr-1028
+  - certificate_url: https://www.linkedin.com/in/ryan-starr-1028/details/certifications/
     date_end: ''
     date_start: '2020-07-01'
     organization: LinkedIn Learning
     organization_url: https://www.linkedin.com/learning/azure-active-directory-basics
     title: Azure Active Directory Basics
-  - certificate_url: https://www.linkedin.com/in/ryan-starr-1028
+  - certificate_url: https://www.linkedin.com/in/ryan-starr-1028/details/certifications/
     date_end: ''
     date_start: '2020-07-01'
     organization: LinkedIn Learning

@@ -32,8 +32,8 @@ content:
       tag: Website
     - name: Home Lab
       tag: Home-Lab
-    - name: Certifications
-      tag: Certifications
+    - name: Github (This Site)
+      tag: Github
 
 design:
   columns: '1'
