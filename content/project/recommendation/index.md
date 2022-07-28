@@ -1,8 +1,8 @@
 ---
-title: Recommendation Systems
+title: Certifications
 summary: Write about your project here...
 tags:
-  - ML
+  - Certifications
 date: 2022-01-01
 external_link: http://github.com
 ---

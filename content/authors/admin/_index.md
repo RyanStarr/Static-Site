@@ -5,9 +5,10 @@ avatar_filename: avatar.jpg
 bio: My name is Ryan Starr. I have an AZ-900 certification, experience in an IT
   Service Desk environment and have gained many skills using my home lab.
 interests:
-  - My interests include configuring my home lab
-  - 3d printing
-  - game creation and cooking.
+  - Configuring my home lab
+  - 3D printing
+  - Game creation
+  - Cooking
 social:
   - icon: envelope
     icon_pack: fas
@@ -16,7 +17,7 @@ social:
       header: false
     link: https://www.linkedin.com/in/ryan-starr-1028/
     icon_pack: fas
-    icon: "#linkedin"
+    icon: "linkedin"
     label: linkedin
 organizations: []
 education:
