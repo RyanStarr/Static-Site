@@ -1,6 +1,6 @@
 ---
 title: Github (This Site)
-summary: Write about your project here...
+summary: The GitHub code behind this static site
 tags:
   - Github
 date: 2022-01-01

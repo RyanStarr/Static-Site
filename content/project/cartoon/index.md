@@ -1,6 +1,6 @@
 ---
 title: Home Lab
-summary: Write about your project here...
+summary: A dashboard showing my homelab services
 tags:
   - Home-Lab
 date: 2022-01-01

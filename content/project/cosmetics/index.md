@@ -1,6 +1,6 @@
 ---
 title: TheAdventuringDev
-summary: Write about your project here...
+summary: My website covering my technical adventure
 tags:
   - Website
 date: 2022-01-01
