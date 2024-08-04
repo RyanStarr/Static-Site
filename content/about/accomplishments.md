@@ -29,7 +29,7 @@ item:
     description: 'MS-900'
     organization: Microsoft
     organization_url: https://docs.microsoft.com/en-us/certifications/exams/MS-900
-    title: Microsoft 365 Certified: Fundamentals
+    title: Microsoft 365 Certified Fundamentals
     url: ''
   - certificate_url: https://www.ryanstarr.co.uk/uploads/AZ-900.png
     date_end: ''
@@ -37,7 +37,7 @@ item:
     description: 'AZ-900'
     organization: Microsoft
     organization_url: https://docs.microsoft.com/en-us/certifications/exams/az-900
-    title: Microsoft Certified: Azure Fundamentals
+    title: Microsoft Certified Azure Fundamentals
     url: ''
   - certificate_url: https://www.linkedin.com/in/ryan-starr-1028/details/certifications/
     date_end: ''
