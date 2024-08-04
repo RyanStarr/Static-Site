@@ -21,8 +21,6 @@ education:
       institution: University of Plymouth
       year: 2018
 superuser: true
-status:
-  icon: ☕️
 ---
 My name is Ryan Starr. I have gained experience working within an MSP as a Technical Analyst and through a range of homelab projects. 
 

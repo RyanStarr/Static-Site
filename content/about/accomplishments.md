@@ -23,7 +23,15 @@ date_format: Jan 2006
 #   Leave other parameters empty if not required.
 #   Begin multi-line descriptions with YAML's `|2-` multi-line prefix.
 item:
-  - certificate_url: https://docs.microsoft.com/en-us/certifications/exams/az-900
+  - certificate_url: https://docs.microsoft.com/en-us/certifications/exams/MS-900
+    date_end: ''
+    date_start: '2023-07-27'
+    description: 'MS-900'
+    organization: Microsoft
+    organization_url: https://docs.microsoft.com/en-us/certifications/exams/MS-900
+    title: Microsoft Azure Fundamentals
+    url: ''
+  - certificate_url: https://www.ryanstarr.co.uk/uploads/MS-900.png
     date_end: ''
     date_start: '2020-10-14'
     description: 'AZ-900'
