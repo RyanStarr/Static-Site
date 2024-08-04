@@ -61,15 +61,7 @@ experience:
         * IT support (over phone, email and in person)
         * Creating Documentation for Staff and Users
         * Creating and editing accounts (Active Directory and other services)
-  - title: Other non tech related jobs
-#    company: University X
-#    company_url: ''
-#    company_logo: org-x
-#    location: California
-    date_start: '2015-04-01'
-    date_end: '2019-09-28'
-    description: Front of house staff for Hotel (summer job) and Garden Centre Assistant (first job 2 years)
-
+  
 design:
   columns: '1'
 ---

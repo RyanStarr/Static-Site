@@ -23,6 +23,7 @@ marketing:
   analytics:
     google_analytics: ''
     baidu_tongji: ''
+    google_tag_manager: 'G-M92NVH7P0R'
   verification:
     google: ''
     baidu: ''
@@ -65,7 +66,7 @@ features:
   math:
     enable: false
   privacy_pack:
-    enable: false
+    enable: true
   repository:
     url: 'https://github.com/<username>/<repository>'
     content_dir: content
