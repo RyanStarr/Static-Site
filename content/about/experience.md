@@ -22,6 +22,32 @@ date_format: Jan 2006
 #   Leave `date_end` empty if it's your current employer.
 #   Begin multi-line descriptions with YAML's `|2-` multi-line prefix.
 experience:
+  - title: Technical Analyst
+    company: WestSpring IT (MSP)
+    company_url: 'https://westspring-it.co.uk'
+#    company_logo: org-gc
+    location: Bristol
+    date_start: '2023-05-14'
+    date_end: '2024-08-02'
+    description: |2-
+        Responsibilities included:
+        
+        * End user support
+        * VPN and network configuration
+        * Hardware configuaration
+  - title: IT Technician
+    company: Bristol University
+    company_url: 'https://www.bristol.ac.uk/'
+#    company_logo: org-gc
+    location: Bristol
+    date_start: '2022-09-14'
+    date_end: '2023-03-18'
+    description: |2-
+        Responsibilities included:
+        
+        * In person support
+        * Worstation setup and deployment
+        * Supporting a satelite campus
   - title: IT Service Desk Analyst
     company: Royal United Hospitals
     company_url: 'https://www.ruh.nhs.uk/'
