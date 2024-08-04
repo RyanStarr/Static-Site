@@ -29,7 +29,6 @@ item:
     description: 'AZ-900'
     organization: Microsoft
     organization_url: https://docs.microsoft.com/en-us/certifications/exams/az-900
-    {{< icon name="download" pack="fas" >}} {{< staticref "uploads/AZ-900.png" "newtab" >}}Download{{< /staticref >}} 
     title: Microsoft Azure Fundamentals
     url: ''
   - certificate_url: https://www.linkedin.com/in/ryan-starr-1028/details/certifications/
