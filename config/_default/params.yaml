@@ -42,7 +42,7 @@ header:
 
 footer:
   copyright:
-    notice: '© {year} Ryan Starr. This work is licensed under {license}'
+    notice: '© {year} Ryan Starr.'
     license:
       enable: false
       allow_derivatives: false
