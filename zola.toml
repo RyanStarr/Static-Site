@@ -1,0 +1,61 @@
+base_url = "https://ryanstarr.co.uk"
+title = "Ryan Starr"
+description = "Junior system administrator in the South West. I build OpenStack and Proxmox clusters, run single sign-on, and look after the MacBooks and Wi-Fi people use every day."
+default_language = "en"
+author = "Ryan Starr"
+
+compile_sass = true
+build_search_index = false
+generate_feeds = false
+
+[markdown]
+smart_punctuation = true
+lazy_async_image = true
+external_links_target_blank = true
+external_links_no_referrer = true
+
+[markdown.highlighting]
+style = "inline"
+theme = "catppuccin-mocha"
+
+[extra]
+# Shown in <meta name="description"> on the home page.
+meta_description = "Ryan Starr, junior system administrator in the South West. I build OpenStack and Proxmox clusters, deploy through CI/CD, run single sign-on, and look after the devices people use every day."
+
+# Masthead. There is deliberately no availability line — Ryan is in post and
+# not job-hunting, so the site is a professional profile, not an advert.
+role = "Junior System Administrator"
+location = "South West England"
+strapline = "I keep infrastructure running, document how it works, and rebuild it when it doesn't."
+
+# The sibling site. The Projects nav item, the footer and the home page's
+# closing section all point at it.
+sibling_name = "The Adventuring Dev"
+sibling_url = "https://theadventuringdev.com"
+
+github = "https://github.com/RyanStarr"
+
+# Home lab stack, listed on the home page.
+stack = ["OPNsense", "Proxmox cluster", "TrueNAS", "NGINX reverse proxy", "Tailscale", "Nextcloud", "Home Assistant", "Ollama", "Whisper", "Piper", "Uptime Kuma"]
+
+# Set to true once static/cv.pdf exists; the download buttons appear then.
+cv_pdf = false
+
+[[extra.nav]]
+name = "Home"
+url = "/"
+
+[[extra.nav]]
+name = "CV"
+url = "/about/"
+
+# Projects is not a page on this site — the write-ups are all on the other one,
+# so the nav item goes straight there rather than through a page of links.
+[[extra.nav]]
+name = "Projects"
+url = "https://theadventuringdev.com"
+external = true
+
+[[extra.nav]]
+name = "Contact"
+url = "/contact/"

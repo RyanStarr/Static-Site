@@ -1,0 +1,126 @@
+{% extends "base.html" %}
+
+{% block content %}
+<article class="page">
+  <div class="wrap">
+    <header class="page__header">
+      <h1 class="page__title">{{ page.title }}</h1>
+      {%- if page.extra.lede %}<p class="page__lede">{{ page.extra.lede }}</p>{% endif %}
+      <p class="actions">
+        <a class="btn" href="{{ get_url(path='/contact/') }}">Get in touch</a>
+        {%- if config.extra.cv_pdf %}
+        <a class="btn btn--quiet" href="{{ get_url(path='cv.pdf') }}">Download PDF</a>
+        {%- endif %}
+        <a class="btn btn--quiet" href="{{ config.extra.github }}" rel="noopener">GitHub</a>
+      </p>
+    </header>
+
+    {%- if page.content %}
+    <section class="section">
+      <div class="slab">
+        <p class="label slab__label">About</p>
+        <div class="slab__body prose">{{ page.content | safe }}</div>
+      </div>
+    </section>
+    {%- endif %}
+
+    {%- if page.extra.skills %}
+    <section class="section">
+      <div class="slab">
+        <p class="label slab__label">Skills</p>
+        <div class="slab__body chips--group">
+          {%- for group in page.extra.skills %}
+          <div class="chips__group">
+            <span class="label">{{ group.name }}</span>
+            <ul class="chips">
+              {%- for item in group.items %}<li>{{ item }}</li>{% endfor %}
+            </ul>
+          </div>
+          {%- endfor %}
+        </div>
+      </div>
+    </section>
+    {%- endif %}
+
+    {%- if page.extra.experience %}
+    <section class="section">
+      <div class="slab">
+        <p class="label slab__label">Experience</p>
+        <div class="slab__body">
+          <ul class="entries">
+            {%- for job in page.extra.experience %}
+            <li class="entry">
+              <h2 class="entry__title">{{ job.title }}</h2>
+              <p class="entry__meta">
+                {%- if job.org %}<span class="entry__org">{% if job.org_url %}<a href="{{ job.org_url }}" rel="noopener">{{ job.org }}</a>{% else %}{{ job.org }}{% endif %}</span>{% endif %}
+                {%- if job.dates %}<span>{{ job.dates }}</span>{% endif %}
+                {%- if job.place %}<span>{{ job.place }}</span>{% endif %}
+              </p>
+              {%- if job.points %}
+              <ul>
+                {%- for point in job.points %}<li>{{ point }}</li>{% endfor %}
+              </ul>
+              {%- endif %}
+            </li>
+            {%- endfor %}
+          </ul>
+        </div>
+      </div>
+    </section>
+    {%- endif %}
+
+    {%- if page.extra.education %}
+    <section class="section">
+      <div class="slab">
+        <p class="label slab__label">Education</p>
+        <div class="slab__body">
+          <ul class="entries">
+            {%- for ed in page.extra.education %}
+            <li class="entry">
+              <h2 class="entry__title">{{ ed.title }}</h2>
+              <p class="entry__meta">
+                <span class="entry__org">{{ ed.org }}</span>
+                <span>{{ ed.dates }}</span>
+              </p>
+              {%- if ed.detail %}<p style="margin:0">{{ ed.detail }}</p>{% endif %}
+            </li>
+            {%- endfor %}
+          </ul>
+        </div>
+      </div>
+    </section>
+    {%- endif %}
+
+    {%- if page.extra.certifications %}
+    <section class="section">
+      <div class="slab">
+        <p class="label slab__label">Certifications</p>
+        <div class="slab__body">
+          <ul class="certs">
+            {%- for c in page.extra.certifications %}
+            <li>
+              <span>{{ c.name }}</span>
+              <span class="certs__issuer">{{ c.issuer }} · {{ c.date }}</span>
+            </li>
+            {%- endfor %}
+          </ul>
+        </div>
+      </div>
+    </section>
+    {%- endif %}
+
+    {%- if page.extra.interests %}
+    <section class="section">
+      <div class="slab">
+        <p class="label slab__label">Outside work</p>
+        <div class="slab__body">
+          <ul class="chips">
+            {%- for i in page.extra.interests %}<li>{{ i }}</li>{% endfor %}
+          </ul>
+        </div>
+      </div>
+    </section>
+    {%- endif %}
+  </div>
+</article>
+{% endblock %}

@@ -1,0 +1,141 @@
+{%- if page is defined and page.title %}{% set title = page.title ~ " — " ~ config.title %}
+{%- elif section is defined and section.title and section.path != "/" %}{% set title = section.title ~ " — " ~ config.title %}
+{%- else %}{% set title = config.title ~ " — " ~ config.extra.role %}{% endif -%}
+{%- if page is defined and page.description %}{% set meta_desc = page.description %}
+{%- elif section is defined and section.description %}{% set meta_desc = section.description %}
+{%- else %}{% set meta_desc = config.extra.meta_description %}{% endif -%}
+<!DOCTYPE html>
+<html lang="{{ config.default_language }}">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>{% block title %}{{ title }}{% endblock %}</title>
+  <meta name="description" content="{{ meta_desc }}">
+  <meta name="robots" content="{% if page is defined and page.extra.noindex %}noindex, follow{% else %}index, follow{% endif %}">
+  <link rel="canonical" href="{{ current_url | default(value=config.base_url) }}">
+
+  <meta property="og:site_name" content="{{ config.title }}">
+  <meta property="og:title" content="{{ title }}">
+  <meta property="og:description" content="{{ meta_desc }}">
+  <meta property="og:type" content="{% if page is defined and page.title %}profile{% else %}website{% endif %}">
+  <meta property="og:url" content="{{ current_url | default(value=config.base_url) }}">
+  <meta property="og:image" content="{{ get_url(path='og-image.png') }}">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:image:alt" content="{{ config.author }} — {{ config.extra.role }}, {{ config.extra.location }}">
+  <meta name="twitter:card" content="summary_large_image">
+
+  {#- The Person node carries sameAs to the sibling site, so search engines
+      model the two domains as one author rather than as duplicates. -#}
+  {%- set person_id = config.base_url ~ "/#person" %}
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "Person",
+        "@id": {{ person_id | json_encode | safe }},
+        "name": {{ config.author | json_encode | safe }},
+        "url": {{ config.base_url | json_encode | safe }},
+        "jobTitle": "Junior System Administrator",
+        "description": {{ config.description | json_encode | safe }},
+        "address": { "@type": "PostalAddress", "addressRegion": {{ config.extra.location | json_encode | safe }}, "addressCountry": "GB" },
+        "sameAs": [
+          {{ config.extra.sibling_url | json_encode | safe }},
+          {{ config.extra.github | json_encode | safe }}
+        ]
+      },
+      {
+        "@type": "WebSite",
+        "@id": {{ (config.base_url ~ "/#website") | json_encode | safe }},
+        "url": {{ config.base_url | json_encode | safe }},
+        "name": {{ config.title | json_encode | safe }},
+        "description": {{ config.description | json_encode | safe }},
+        "inLanguage": "en-GB",
+        "publisher": { "@id": {{ person_id | json_encode | safe }} }
+      }
+    ]
+  }
+  </script>
+
+  {#- Applied before first paint so a saved dark preference does not flash white. -#}
+  <script>
+    try {
+      var t = localStorage.getItem("theme");
+      if (t === "dark" || t === "light") document.documentElement.setAttribute("data-theme", t);
+    } catch (e) {}
+  </script>
+
+  <link rel="preload" href="{{ get_url(path='fonts/ibm-plex-sans-var.woff2') }}" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" href="{{ get_url(path='fonts/space-grotesk-var.woff2') }}" as="font" type="font/woff2" crossorigin>
+  <link rel="icon" href="{{ get_url(path='favicon-32.png') }}" type="image/png" sizes="32x32">
+  <link rel="apple-touch-icon" href="{{ get_url(path='apple-touch-icon.png') }}">
+  <link rel="stylesheet" href="{{ get_url(path='style.css', cachebust=true) }}">
+  {% block head %}{% endblock %}
+</head>
+<body>
+  <a class="skip-link" href="#main">Skip to content</a>
+
+  <header class="site-header">
+    <div class="wrap site-header__inner">
+      <a class="brand" href="{{ get_url(path='/') }}">
+        <span class="brand__mark" aria-hidden="true">RS</span>
+        <span class="brand__name">{{ config.title }}</span>
+      </a>
+
+      <nav aria-label="Main">
+        <ul class="nav">
+          {#- current_path is undefined on the 404 page; nothing should be marked current there. -#}
+          {%- set here = current_path | default(value="") %}
+          {%- for item in config.extra.nav %}
+          <li>
+            {%- if item.external %}
+            <a href="{{ item.url }}" rel="noopener">{{ item.name }}</a>
+            {%- else %}
+            <a href="{{ get_url(path=item.url) }}"{% if here == item.url %} aria-current="page"{% endif %}>{{ item.name }}</a>
+            {%- endif %}
+          </li>
+          {%- endfor %}
+          <li>
+            <button class="theme-toggle" type="button" id="theme-toggle" aria-label="Switch between light and dark">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" aria-hidden="true">
+                <path d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8Z"/>
+              </svg>
+            </button>
+          </li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <main id="main">
+    {% block content %}{% endblock %}
+  </main>
+
+  <footer class="site-footer">
+    <div class="wrap site-footer__inner">
+      <p style="margin:0">&copy; {{ now() | date(format='%Y') }} {{ config.author }} · {{ config.extra.location }}</p>
+      <ul class="site-footer__links">
+        <li><a href="{{ get_url(path='/about/') }}">CV</a></li>
+        <li><a href="{{ get_url(path='/contact/') }}">Contact</a></li>
+        <li><a href="{{ config.extra.github }}" rel="noopener">GitHub</a></li>
+        <li><a href="{{ config.extra.sibling_url }}" rel="noopener">{{ config.extra.sibling_name }}</a></li>
+      </ul>
+    </div>
+  </footer>
+
+  <script>
+    (function () {
+      var btn = document.getElementById("theme-toggle");
+      if (!btn) return;
+      btn.addEventListener("click", function () {
+        var dark = matchMedia("(prefers-color-scheme: dark)").matches;
+        var cur = document.documentElement.getAttribute("data-theme") || (dark ? "dark" : "light");
+        var next = cur === "dark" ? "light" : "dark";
+        document.documentElement.setAttribute("data-theme", next);
+        try { localStorage.setItem("theme", next); } catch (e) {}
+      });
+    })();
+  </script>
+</body>
+</html>

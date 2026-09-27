@@ -1,21 +1,42 @@
 [build]
-  command = "hugo --gc --minify -b $URL"
-  publish = "public"
+publish = "public"
+# $URL is the project's primary address, so links and canonical tags always match
+# the domain the build is actually served from (the *.netlify.app test project, or
+# ryanstarr.co.uk once the domain is attached).
+command = "zola build --base-url $URL"
 
 [build.environment]
-  HUGO_VERSION = "0.97.3"
-  HUGO_ENABLEGITINFO = "true"
-
-[context.production.environment]
-  HUGO_ENV = "production"
+# Match the version used locally (`zola --version`).
+ZOLA_VERSION = "0.23.6"
 
 [context.deploy-preview]
-  command = "hugo --gc --minify --buildFuture -b $DEPLOY_PRIME_URL"
+command = "zola build --base-url $DEPLOY_PRIME_URL"
 
 [context.branch-deploy]
-  command = "hugo --gc --minify -b $DEPLOY_PRIME_URL"
+command = "zola build --base-url $DEPLOY_PRIME_URL"
 
-[[plugins]]
-  package = "netlify-plugin-hugo-cache-resources"
-  [plugins.inputs]
-    debug = true
+# No www/apex redirect here on purpose. Netlify already redirects every other
+# domain on the project to its primary domain (currently www.ryanstarr.co.uk);
+# a rule here pointing the other way would create a redirect loop.
+
+[[headers]]
+for = "/*"
+  [headers.values]
+  X-Content-Type-Options = "nosniff"
+  Referrer-Policy = "strict-origin-when-cross-origin"
+  X-Frame-Options = "DENY"
+  Strict-Transport-Security = "max-age=31536000"
+  Permissions-Policy = "camera=(), microphone=(), geolocation=(), interest-cohort=()"
+
+# style.css is linked with a ?h=<hash> cachebust query (see base.html), so the
+# URL changes whenever the file does and a year-long immutable cache is safe.
+[[headers]]
+for = "/style.css"
+  [headers.values]
+  Cache-Control = "public, max-age=31536000, immutable"
+
+# Self-hosted fonts. Rename the file if a font is ever updated.
+[[headers]]
+for = "/fonts/*"
+  [headers.values]
+  Cache-Control = "public, max-age=31536000, immutable"

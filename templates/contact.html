@@ -1,0 +1,52 @@
+{% extends "base.html" %}
+
+{% block content %}
+<article class="page">
+  <div class="wrap">
+    <header class="page__header">
+      <h1 class="page__title">{{ page.title }}</h1>
+      {%- if page.extra.lede %}<p class="page__lede">{{ page.extra.lede }}</p>{% endif %}
+    </header>
+
+    <div class="prose" style="margin-bottom:var(--s6)">{{ page.content | safe }}</div>
+
+    <section class="section">
+      <div class="slab">
+        <p class="label slab__label">Message</p>
+        <div class="slab__body">
+          {#- Netlify Forms: Netlify finds this form in the built HTML at deploy time
+              and handles submissions itself. No third-party service, no API key.
+              netlify-honeypot names the hidden spam-trap field below. -#}
+          <form class="form" name="contact" method="POST" action="/contact/thanks/" data-netlify="true" netlify-honeypot="bot-field">
+            <input type="hidden" name="form-name" value="contact">
+            <p class="form__trap" aria-hidden="true">
+              <label>Leave this empty: <input name="bot-field" tabindex="-1" autocomplete="off"></label>
+            </p>
+            <div class="field--split">
+              <div class="field">
+                <label for="name">Name</label>
+                <input id="name" name="name" type="text" autocomplete="name" required>
+              </div>
+              <div class="field">
+                <label for="email">Email</label>
+                <input id="email" name="email" type="email" autocomplete="email" required>
+              </div>
+            </div>
+            <div class="field">
+              <label for="subject">Subject</label>
+              <input id="subject" name="subject" type="text">
+            </div>
+            <div class="field">
+              <label for="message">Message</label>
+              <textarea id="message" name="message" required></textarea>
+            </div>
+            <p style="margin:0"><button class="btn" type="submit">Send</button></p>
+            <p class="form__privacy">Your message is handled by Netlify, which hosts this site, and
+            forwarded to my inbox. I only use your details to reply to you.</p>
+          </form>
+        </div>
+      </div>
+    </section>
+  </div>
+</article>
+{% endblock %}

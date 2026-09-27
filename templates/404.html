@@ -1,0 +1,21 @@
+{% extends "base.html" %}
+
+{% block title %}Page not found — {{ config.title }}{% endblock %}
+
+{% block content %}
+<article class="page">
+  <div class="wrap wrap--narrow">
+    <header class="page__header">
+      <p class="label">Error 404</p>
+      <h1 class="page__title">That page isn't here</h1>
+      <p class="page__lede">This site was rebuilt, so a few old addresses have moved. The CV
+      is the place to start — or the write-ups may be on the other site.</p>
+    </header>
+    <p class="actions">
+      <a class="btn" href="{{ get_url(path='/about/') }}">CV</a>
+      <a class="btn btn--quiet" href="{{ get_url(path='/') }}">Home</a>
+      <a class="btn btn--quiet" href="{{ config.extra.sibling_url }}" rel="noopener">{{ config.extra.sibling_name }}</a>
+    </p>
+  </div>
+</article>
+{% endblock %}

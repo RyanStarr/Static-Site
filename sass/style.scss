@@ -1,0 +1,658 @@
+// ryanstarr.co.uk
+//
+// Deliberately NOT The Adventuring Dev. That site is blue (#5093d4), serif
+// headings (Hanuman), full-bleed photographic hero, image-tile card grid.
+// This one is warm paper and rust, geometric-grotesk headings, a monospace
+// label voice, no hero image at all, and rule-and-label CV typography.
+// Anyone following a link between the two should be in no doubt they moved.
+
+// Fonts are self-hosted from static/fonts (latin subset, SIL Open Font
+// License) so no page makes a request to a third party. IBM Plex Sans and
+// Space Grotesk are variable fonts: one file covers every weight.
+@font-face {
+  font-family: "Space Grotesk";
+  font-style: normal;
+  font-weight: 300 700;
+  font-display: swap;
+  src: url("/fonts/space-grotesk-var.woff2") format("woff2");
+}
+@font-face {
+  font-family: "IBM Plex Sans";
+  font-style: normal;
+  font-weight: 100 700;
+  font-display: swap;
+  src: url("/fonts/ibm-plex-sans-var.woff2") format("woff2");
+}
+@font-face {
+  font-family: "IBM Plex Mono";
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url("/fonts/ibm-plex-mono-400.woff2") format("woff2");
+}
+@font-face {
+  font-family: "IBM Plex Mono";
+  font-style: normal;
+  font-weight: 500;
+  font-display: swap;
+  src: url("/fonts/ibm-plex-mono-500.woff2") format("woff2");
+}
+
+:root {
+  // Rust is the accent, not the text colour. It appears on links and the brand
+  // mark, and nowhere else — so when it shows up it means something. Text is near-neutral charcoal with the faintest warm cast
+  // to sit properly on the warm paper background.
+  --accent:      #a83e1c;   // 5.6:1 on canvas
+  --accent-soft: rgba(168, 62, 28, 0.09);
+  --accent-line: rgba(168, 62, 28, 0.30);
+  --ink:         #171512;   // headings, ~15:1
+  --body:        #2e2b27;   // body copy, ~11:1
+  --muted:       #655d52;   // mono labels, ~5.9:1 — small type needs the contrast
+  --canvas:      #faf7f2;
+  --surface:     #ffffff;
+  --rule:        rgba(23, 21, 18, 0.15);
+  --rule-soft:   rgba(23, 21, 18, 0.08);
+
+  --measure: 42rem;
+  --page: 68rem;
+
+  --s1: .25rem;
+  --s2: .5rem;
+  --s3: .875rem;
+  --s4: 1.25rem;
+  --s5: 2rem;
+  --s6: 3rem;
+  --s7: 4.5rem;
+  --s8: 6.5rem;
+
+  --radius: 2px;
+
+  --font-display: "Space Grotesk", ui-sans-serif, system-ui, -apple-system, "Segoe UI", sans-serif;
+  --font-body: "IBM Plex Sans", ui-sans-serif, system-ui, -apple-system, "Segoe UI", sans-serif;
+  --font-mono: "IBM Plex Mono", ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+}
+
+:root:not([data-theme="light"]) {
+  @media (prefers-color-scheme: dark) {
+    --accent:      #ff8a5c;
+    --accent-soft: rgba(255, 138, 92, 0.12);
+    --accent-line: rgba(255, 138, 92, 0.36);
+    --ink:         #f2ede6;
+    --body:        #d7d1c8;
+    --muted:       #9c9285;
+    --canvas:      #14120f;
+    --surface:     #1c1916;
+    --rule:        rgba(242, 237, 230, 0.17);
+    --rule-soft:   rgba(242, 237, 230, 0.08);
+  }
+}
+
+:root[data-theme="dark"] {
+  --accent:      #ff8a5c;
+  --accent-soft: rgba(255, 138, 92, 0.12);
+  --accent-line: rgba(255, 138, 92, 0.36);
+  --ink:         #f2ede6;
+  --body:        #d7d1c8;
+  --muted:       #9c9285;
+  --canvas:      #14120f;
+  --surface:     #1c1916;
+  --rule:        rgba(242, 237, 230, 0.17);
+  --rule-soft:   rgba(242, 237, 230, 0.08);
+}
+
+*, *::before, *::after { box-sizing: border-box; }
+html { -webkit-text-size-adjust: 100%; scroll-behavior: smooth; }
+
+body {
+  margin: 0;
+  background: var(--canvas);
+  color: var(--body);
+  font-family: var(--font-body);
+  font-size: 17px;
+  line-height: 1.65;
+  -webkit-font-smoothing: antialiased;
+}
+
+h1, h2, h3, h4 {
+  font-family: var(--font-display);
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  line-height: 1.15;
+  color: var(--ink);
+  margin: 0 0 var(--s3);
+}
+
+h1 { font-size: clamp(2.1rem, 1.4rem + 2.6vw, 3.1rem); }
+h2 { font-size: clamp(1.5rem, 1.2rem + 1.1vw, 1.9rem); }
+h3 { font-size: 1.2rem; }
+h4 { font-size: 1rem; }
+
+p { margin: 0 0 var(--s4); }
+
+a {
+  color: var(--accent);
+  text-decoration: none;
+  border-bottom: 1px solid var(--accent-line);
+  transition: border-color .15s ease, background-color .15s ease;
+
+  &:hover { border-bottom-color: var(--accent); }
+}
+
+img { max-width: 100%; height: auto; }
+
+hr { border: 0; border-top: 1px solid var(--rule); margin: var(--s6) 0; }
+
+.skip-link {
+  position: absolute;
+  left: -9999px;
+
+  &:focus {
+    left: var(--s4);
+    top: var(--s4);
+    z-index: 100;
+    padding: .5rem 1rem;
+    background: var(--surface);
+    border: 1px solid var(--rule);
+  }
+}
+
+:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+
+.wrap {
+  width: 100%;
+  max-width: var(--page);
+  margin-inline: auto;
+  padding-inline: var(--s4);
+}
+
+.wrap--narrow { max-width: 52rem; }
+
+// ------------------------------------------------- the monospace label voice
+
+.label {
+  display: block;
+  font-family: var(--font-mono);
+  font-size: .72rem;
+  font-weight: 500;
+  letter-spacing: .14em;
+  text-transform: uppercase;
+  color: var(--muted);
+}
+
+// --------------------------------------------------------------- header
+
+.site-header {
+  position: sticky;
+  top: 0;
+  z-index: 30;
+  background: color-mix(in srgb, var(--canvas) 88%, transparent);
+  backdrop-filter: blur(8px);
+  border-bottom: 1px solid var(--rule);
+}
+
+.site-header__inner {
+  display: flex;
+  align-items: center;
+  gap: var(--s5);
+  flex-wrap: wrap;
+  padding-block: var(--s3);
+}
+
+.brand {
+  display: inline-flex;
+  align-items: center;
+  gap: .7rem;
+  margin-right: auto;
+  border: 0;
+  color: var(--ink);
+
+  &:hover .brand__mark { transform: rotate(-4deg); }
+}
+
+// A hard-edged rust square, against the sibling site's outlined circle.
+.brand__mark {
+  display: grid;
+  place-items: center;
+  width: 34px;
+  height: 34px;
+  background: var(--accent);
+  color: #fff;
+  font-family: var(--font-mono);
+  font-size: .8rem;
+  font-weight: 500;
+  letter-spacing: .04em;
+  transition: transform .2s ease;
+}
+
+.brand__name {
+  font-family: var(--font-display);
+  font-size: 1.05rem;
+  font-weight: 700;
+  letter-spacing: -0.01em;
+}
+
+.nav {
+  display: flex;
+  align-items: center;
+  gap: var(--s5);
+  flex-wrap: wrap;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.nav a {
+  font-family: var(--font-mono);
+  font-size: .8rem;
+  letter-spacing: .06em;
+  text-transform: uppercase;
+  color: var(--body);
+  border-bottom: 1px solid transparent;
+  padding-bottom: 2px;
+
+  &:hover, &[aria-current="page"] { color: var(--ink); border-bottom-color: var(--accent); }
+}
+
+.theme-toggle {
+  display: grid;
+  place-items: center;
+  width: 32px;
+  height: 32px;
+  padding: 0;
+  background: none;
+  color: var(--muted);
+  border: 1px solid var(--rule);
+  border-radius: var(--radius);
+  cursor: pointer;
+
+  &:hover { color: var(--ink); border-color: var(--accent); }
+
+  svg { width: 16px; height: 16px; }
+}
+
+// ------------------------------------------------------------- masthead
+
+// No hero image, by design. The sibling site opens with a full-bleed
+// photograph; this one opens with type on paper.
+.masthead {
+  padding-block: var(--s8) var(--s7);
+  border-bottom: 1px solid var(--rule);
+}
+
+.masthead__name {
+  margin: 0 0 var(--s2);
+  font-size: clamp(2.6rem, 1.4rem + 4.6vw, 4.6rem);
+  letter-spacing: -0.035em;
+}
+
+.masthead__role {
+  font-family: var(--font-mono);
+  font-size: clamp(.85rem, .78rem + .3vw, 1rem);
+  letter-spacing: .1em;
+  text-transform: uppercase;
+  color: var(--muted);
+  margin: 0 0 var(--s5);
+}
+
+.masthead__strap {
+  max-width: var(--measure);
+  font-size: clamp(1.05rem, 1rem + .4vw, 1.3rem);
+  color: var(--ink);
+}
+
+.actions {
+  display: flex;
+  gap: var(--s3);
+  flex-wrap: wrap;
+  margin-top: var(--s5);
+}
+
+.btn {
+  display: inline-block;
+  padding: .6rem 1.15rem;
+  background: var(--ink);
+  color: var(--canvas);
+  border: 1px solid var(--ink);
+  border-radius: var(--radius);
+  font-family: var(--font-mono);
+  font-size: .8rem;
+  letter-spacing: .06em;
+  text-transform: uppercase;
+
+  &:hover { background: var(--accent); border-color: var(--accent); color: #fff; }
+}
+
+.btn--quiet {
+  background: transparent;
+  color: var(--ink);
+  border-color: var(--rule);
+
+  &:hover { background: transparent; color: var(--accent); border-color: var(--accent); }
+}
+
+// --------------------------------------------------------------- sections
+
+.section { padding-block: var(--s7); border-bottom: 1px solid var(--rule-soft); }
+
+.section:last-of-type { border-bottom: 0; }
+
+// A label in the left margin against content on the right — the structural
+// signature of this site, and nothing like the sibling's centred headings.
+.slab {
+  display: grid;
+  grid-template-columns: 12rem 1fr;
+  gap: var(--s5);
+  align-items: start;
+}
+
+.slab__label { padding-top: .45rem; }
+
+.slab__body > :last-child { margin-bottom: 0; }
+
+@media (max-width: 760px) {
+  .slab { grid-template-columns: 1fr; gap: var(--s3); }
+  .slab__label { padding-top: 0; }
+}
+
+// ------------------------------------------------------------------ chips
+
+.chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: .4rem;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.chips li {
+  padding: .22rem .65rem;
+  background: var(--surface);
+  border: 1px solid var(--rule);
+  border-radius: var(--radius);
+  font-family: var(--font-mono);
+  font-size: .78rem;
+  color: var(--ink);
+}
+
+.chips--group { display: block; }
+
+.chips__group { margin-bottom: var(--s4); }
+
+.chips__group .label { margin-bottom: .5rem; }
+
+// ------------------------------------------------------------- CV entries
+
+.entries { list-style: none; margin: 0; padding: 0; }
+
+.entry {
+  position: relative;
+  padding: 0 0 var(--s5) var(--s5);
+  border-left: 1px solid var(--rule);
+
+  &:last-child { padding-bottom: 0; }
+
+  &::before {
+    content: "";
+    position: absolute;
+    left: -4px;
+    top: .55rem;
+    width: 7px;
+    height: 7px;
+    background: var(--accent);
+    border-radius: 50%;
+  }
+}
+
+.entry__title {
+  margin: 0 0 .1rem;
+  font-size: 1.15rem;
+}
+
+.entry__org { color: var(--ink); }
+
+.entry__meta {
+  display: flex;
+  gap: 0 .6rem;
+  flex-wrap: wrap;
+  margin-bottom: .6rem;
+  font-family: var(--font-mono);
+  font-size: .76rem;
+  letter-spacing: .04em;
+  color: var(--muted);
+}
+
+// Separator hangs off the end of the preceding item so it can never
+// begin a wrapped line.
+.entry__meta span:not(:last-child)::after { content: " ·"; margin-left: .6rem; }
+
+.entry ul {
+  margin: 0;
+  padding-left: 1.05rem;
+}
+
+.entry li { margin-bottom: .2rem; }
+
+// --------------------------------------------------------------- certs
+
+.certs { list-style: none; margin: 0; padding: 0; }
+
+.certs li {
+  display: flex;
+  justify-content: space-between;
+  gap: var(--s4);
+  padding: .55rem 0;
+  border-bottom: 1px solid var(--rule-soft);
+}
+
+.certs li:last-child { border-bottom: 0; }
+
+.certs__issuer {
+  font-family: var(--font-mono);
+  font-size: .78rem;
+  color: var(--muted);
+  white-space: nowrap;
+}
+
+// --------------------------------------------------------------- projects
+
+// Bordered text panels, not the sibling site's photographic image tiles.
+.panels {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(17rem, 1fr));
+  gap: var(--s4);
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.panel {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  padding: var(--s4);
+  background: var(--surface);
+  border: 1px solid var(--rule);
+  border-radius: var(--radius);
+  color: var(--body);
+  transition: border-color .15s ease, transform .15s ease;
+
+  &:hover {
+    border-color: var(--accent);
+    transform: translateY(-2px);
+  }
+}
+
+.panel__title {
+  margin: .5rem 0 .35rem;
+  font-size: 1.15rem;
+}
+
+.panel__text { margin: 0 0 var(--s4); font-size: .95rem; }
+
+.panel__go {
+  margin-top: auto;
+  font-family: var(--font-mono);
+  font-size: .76rem;
+  letter-spacing: .06em;
+  text-transform: uppercase;
+  color: var(--accent);
+}
+
+.panel--out .panel__title::after {
+  content: " ↗";
+  font-size: .75em;
+  color: var(--muted);
+}
+
+// ---------------------------------------------------------------- prose
+
+.prose {
+  max-width: var(--measure);
+
+  h2 { margin-top: var(--s6); }
+  h3 { margin-top: var(--s5); }
+
+  ul, ol { margin: 0 0 var(--s4); padding-left: 1.2rem; }
+  li { margin-bottom: .3rem; }
+
+  blockquote {
+    margin: var(--s5) 0;
+    padding-left: var(--s4);
+    border-left: 2px solid var(--accent);
+    color: var(--muted);
+  }
+
+  table { width: 100%; border-collapse: collapse; margin: 0 0 var(--s5); font-size: .95rem; }
+  th, td { padding: .55rem .7rem; border-bottom: 1px solid var(--rule-soft); text-align: left; vertical-align: top; }
+  th { font-family: var(--font-mono); font-size: .76rem; letter-spacing: .06em; text-transform: uppercase; color: var(--muted); }
+
+  pre {
+    padding: var(--s4);
+    border-radius: var(--radius);
+    overflow-x: auto;
+    font-family: var(--font-mono);
+    font-size: .85rem;
+    line-height: 1.6;
+  }
+
+  :not(pre) > code {
+    padding: .1rem .3rem;
+    background: var(--accent-soft);
+    border-radius: var(--radius);
+    font-family: var(--font-mono);
+    font-size: .88em;
+  }
+}
+
+.page { padding-block: var(--s7); }
+
+.page__header { margin-bottom: var(--s6); }
+
+.page__title { margin-bottom: .35rem; }
+
+.page__lede { max-width: var(--measure); font-size: 1.15rem; color: var(--ink); }
+
+// ---------------------------------------------------------------- forms
+
+.form { display: grid; gap: var(--s4); max-width: 34rem; }
+
+.field { display: grid; gap: .3rem; }
+
+.field label {
+  font-family: var(--font-mono);
+  font-size: .76rem;
+  letter-spacing: .08em;
+  text-transform: uppercase;
+  color: var(--muted);
+}
+
+.field input,
+.field textarea {
+  padding: .6rem .7rem;
+  font: inherit;
+  font-size: 1rem;
+  color: var(--ink);
+  background: var(--surface);
+  border: 1px solid var(--rule);
+  border-radius: var(--radius);
+
+  &:focus-visible { outline: 2px solid var(--accent); outline-offset: 1px; }
+}
+
+.field textarea { min-height: 9rem; resize: vertical; }
+
+.field--split { display: grid; grid-template-columns: 1fr 1fr; gap: var(--s4); }
+
+// Spam trap for Netlify Forms. Humans never see it; bots fill it in.
+.form__trap { display: none; }
+
+.form__privacy {
+  margin: 0;
+  font-size: .85rem;
+  color: var(--muted);
+}
+
+.note {
+  padding: var(--s3) var(--s4);
+  background: var(--accent-soft);
+  border-left: 2px solid var(--accent);
+  font-size: .92rem;
+}
+
+// --------------------------------------------------------------- footer
+
+.site-footer {
+  margin-top: var(--s7);
+  padding-block: var(--s6);
+  border-top: 1px solid var(--rule);
+  font-family: var(--font-mono);
+  font-size: .78rem;
+  letter-spacing: .03em;
+  color: var(--muted);
+}
+
+.site-footer__inner {
+  display: flex;
+  justify-content: space-between;
+  gap: var(--s4);
+  flex-wrap: wrap;
+}
+
+.site-footer a { color: var(--muted); border-bottom-color: var(--rule); }
+.site-footer a:hover { color: var(--accent); border-bottom-color: var(--accent); }
+
+.site-footer__links {
+  display: flex;
+  gap: var(--s4);
+  flex-wrap: wrap;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+// ------------------------------------------------------------ responsive
+
+@media (max-width: 860px) {
+  .site-header__inner { gap: var(--s4); }
+  .nav { gap: var(--s4); width: 100%; }
+  .masthead { padding-block: var(--s6) var(--s6); }
+  .field--split { grid-template-columns: 1fr; }
+  .certs li { flex-direction: column; gap: .1rem; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  *, *::before, *::after {
+    animation-duration: .01ms !important;
+    transition-duration: .01ms !important;
+  }
+}
+
+@media print {
+  .site-header, .site-footer, .actions, .theme-toggle { display: none !important; }
+  body { background: #fff; color: #000; font-size: 11pt; }
+  .section { padding-block: 1rem; border: 0; }
+  .entry { break-inside: avoid; }
+  a { color: #000; border: 0; }
+}

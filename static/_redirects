@@ -1,0 +1,49 @@
+# ryanstarr.co.uk — Netlify redirects
+#
+# The old site was Hugo/Wowchemy. These map its URL shapes onto the new ones so
+# that existing links, bookmarks and search results keep working.
+#
+# This site has no projects section — the write-ups are all on the other domain —
+# so anything that used to be a project or post goes there.
+
+# Wowchemy's author profile was effectively the about page.
+/authors/admin          /about/            301
+/authors/admin/*        /about/            301
+/authors/*              /about/            301
+
+# Wowchemy content types. The writing lives on the other site now.
+/projects               https://theadventuringdev.com/   301
+/projects/*             https://theadventuringdev.com/   301
+/post                   https://theadventuringdev.com/   301
+/post/*                 https://theadventuringdev.com/   301
+/project                https://theadventuringdev.com/   301
+/project/*              https://theadventuringdev.com/   301
+/publication            /about/            301
+/publication/*          /about/            301
+/talk                   /about/            301
+/talk/*                 /about/            301
+
+# Taxonomy pages.
+/tag/*                  https://theadventuringdev.com/   301
+/tags/*                 https://theadventuringdev.com/   301
+/category/*             https://theadventuringdev.com/   301
+/categories/*           https://theadventuringdev.com/   301
+
+# Wowchemy's feed lived at /index.xml; this site publishes no feed, because the
+# writing is on the other domain.
+/index.xml              https://theadventuringdev.com/atom.xml  301
+/post/index.xml         https://theadventuringdev.com/atom.xml  301
+
+# Retired subdomains were linked from the old about page. They are gone.
+/files                  /about/            301
+/status                 /about/            301
+
+# Pages Wowchemy generated that have no equivalent here.
+/privacy                /                  301
+/terms                  /                  301
+/slides/*               /                  301
+
+# The old site served the CV PDF and certificate images from /uploads/. The PDF
+# was out of date, so old links go to the CV page instead.
+/uploads/CV.pdf         /about/            301
+/uploads/*              /about/            301

@@ -1,0 +1,106 @@
+{% extends "base.html" %}
+
+{% block content %}
+{#- No hero image. The sibling site opens on a photograph; this one opens on type. -#}
+<section class="masthead">
+  <div class="wrap">
+    <h1 class="masthead__name">{{ config.author }}</h1>
+    <p class="masthead__role">{{ config.extra.role }} · {{ config.extra.location }}</p>
+    <p class="masthead__strap">{{ config.extra.strapline }}</p>
+    <p class="actions">
+      <a class="btn" href="{{ get_url(path='/about/') }}">Read CV</a>
+      <a class="btn btn--quiet" href="{{ get_url(path='/contact/') }}">Get in touch</a>
+      {%- if config.extra.cv_pdf %}
+      <a class="btn btn--quiet" href="{{ get_url(path='cv.pdf') }}">Download PDF</a>
+      {%- endif %}
+    </p>
+  </div>
+</section>
+
+<section class="section">
+  <div class="wrap slab">
+    <p class="label slab__label">What I do</p>
+    <div class="slab__body prose">
+      {{ section.content | safe }}
+    </div>
+  </div>
+</section>
+
+{%- set cv = get_page(path="about.md") %}
+{%- if cv.extra.skills %}
+<section class="section">
+  <div class="wrap slab">
+    <p class="label slab__label">Stack</p>
+    <div class="slab__body chips--group">
+      {%- for group in cv.extra.skills %}
+      <div class="chips__group">
+        <span class="label">{{ group.name }}</span>
+        <ul class="chips">
+          {%- for item in group.items %}<li>{{ item }}</li>{% endfor %}
+        </ul>
+      </div>
+      {%- endfor %}
+    </div>
+  </div>
+</section>
+{%- endif %}
+
+{%- if cv.extra.experience %}
+<section class="section">
+  <div class="wrap slab">
+    <p class="label slab__label">Recent roles</p>
+    <div class="slab__body">
+      <ul class="entries">
+        {%- for job in cv.extra.experience %}{% if loop.index > 3 %}{% break %}{% endif %}
+        <li class="entry">
+          <h2 class="entry__title">{{ job.title }}</h2>
+          <p class="entry__meta">
+            {%- if job.org %}<span class="entry__org">{{ job.org }}</span>{% endif %}
+            {%- if job.dates %}<span>{{ job.dates }}</span>{% endif %}
+            {%- if job.place %}<span>{{ job.place }}</span>{% endif %}
+          </p>
+        </li>
+        {%- endfor %}
+      </ul>
+      <p style="margin-top:var(--s5)"><a href="{{ get_url(path='/about/') }}">Full CV, education and certifications &rarr;</a></p>
+    </div>
+  </div>
+</section>
+{%- endif %}
+
+{%- if config.extra.stack %}
+<section class="section">
+  <div class="wrap slab">
+    <p class="label slab__label">The home lab</p>
+    <div class="slab__body">
+      <p>An OPNsense router, a Proxmox cluster and a TrueNAS server, with an NGINX reverse
+      proxy in front of the services and Tailscale so I can reach them from anywhere. On
+      top of that runs Nextcloud, which holds the family photos, and a voice assistant
+      built from Home Assistant, Ollama, Whisper and Piper, all on my own hardware rather
+      than someone else's cloud. Uptime Kuma keeps an eye on all of my services and pings
+      me on Discord when something fails.</p>
+      <p>Most of what I know about infrastructure I learned by running this, breaking it,
+      and having to get it back up.</p>
+      <ul class="chips" style="margin-bottom:var(--s5)">
+        {%- for item in config.extra.stack %}<li>{{ item }}</li>{% endfor %}
+      </ul>
+      <p style="margin:0"><a href="{{ config.extra.sibling_url }}" rel="noopener">Read the write-ups on {{ config.extra.sibling_name }} &rarr;</a></p>
+    </div>
+  </div>
+</section>
+{%- endif %}
+
+{#- Stated plainly, so the two-site setup reads as deliberate rather than
+    as a stale duplicate of the other one. -#}
+<section class="section">
+  <div class="wrap slab">
+    <p class="label slab__label">Elsewhere</p>
+    <div class="slab__body prose">
+      <p>This is where I keep my CV and how to get hold of me. The longer write-ups — home
+      lab builds, what broke and how I fixed it — are over on
+      <a href="{{ config.extra.sibling_url }}" rel="noopener">{{ config.extra.sibling_name }}</a>.</p>
+      <p>Same person, different hat. If you've come from there: hello again.</p>
+    </div>
+  </div>
+</section>
+{% endblock %}
